@@ -22,7 +22,8 @@ import React from "react";
 
   class EmployeeList extends React.Component {
      state = {
-         filter: "none",
+         filter: this.props.filter,
+         order: this.props.order,
          employees: []
      };
 
@@ -33,12 +34,44 @@ import React from "react";
          } catch (err) {
              console.log(err)
          }
-     }
+     } 
+
+     sortList() {
+        let employeeList = this.state.employees
+        if (employeeList.length === 0) {
+            return employeeList;
+        } else {
+            employeeList.sort()
+        }
+        console.log(employeeList)
+        switch (this.state.filter) {
+            case "firstDescending":
+
+                 break;
+            case "firstAscending":
+
+                 break;
+            default:
+                return employeeList
+        }
+    }
 
       render() {
          console.log(this.state.employees)
          return (
-             <EmployeeInfo employeeList={this.state.employees} />
+             <div>
+                 <div className="container">
+                     <div className="row d-flex align-items-center" style={{ fontSize: "10pt", borderBottom: "2px solid black" }}>
+                         <div className="col-md-1"></div>
+                         <button className="btn btn-sm col-md-1">First Name</button>
+                         <button className="btn btn-sm col-md-1">Last Name</button>
+                         <button className="btn btn-sm col-md-2">City</button>
+                         <button className="btn btn-sm col-md-2">Phone</button>
+                         <button className="btn btn-sm col-md-3">Email</button>
+                     </div>
+                 </div>
+                 <EmployeeInfo employeeList={this.sortList()} />
+             </div>
          )
      }
  }
