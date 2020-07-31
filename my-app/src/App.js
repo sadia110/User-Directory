@@ -26,7 +26,9 @@ function App() {
 
 
 
-    <div> 
+    <div>  
+
+<SearchBar handleSearch={handleSearch} />
   
    <EmployeeList />
 
